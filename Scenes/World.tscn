@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://braaxrlt5o02x"]
+
+[ext_resource type="Terrain3DStorage" uid="uid://hjq65tuye376" path="res://Terrain/Terrain_Storage.res" id="1_ma5xf"]
+[ext_resource type="Terrain3DMaterial" uid="uid://badx886d28kt6" path="res://Terrain/Terrain_Material.tres" id="2_0vi7g"]
+[ext_resource type="Terrain3DAssets" uid="uid://dh63ft2vb8hb0" path="res://Terrain/Terrain_TextureList.tres" id="3_6caxx"]
+
+[sub_resource type="Environment" id="Environment_8m5u1"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_em36i"]
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8m5u1")
+camera_attributes = SubResource("CameraAttributesPractical_em36i")
+
+[node name="Terrain3D" type="Terrain3D" parent="WorldEnvironment"]
+storage = ExtResource("1_ma5xf")
+material = ExtResource("2_0vi7g")
+assets = ExtResource("3_6caxx")
+mesh_lods = 6
+mesh_size = 8
+mesh_vertex_spacing = 0.5
+debug_show_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 248.237, 0.391595, 297.434)
+
+[node name="Camera3D" type="Camera3D" parent="WorldEnvironment/CSGBox3D"]
+transform = Transform3D(-0.991794, -2.58295e-09, -0.127844, -0.107718, 0.53858, 0.835661, 0.0688539, 0.842575, -0.53416, -1.40851, 12.2523, -7.10159)
