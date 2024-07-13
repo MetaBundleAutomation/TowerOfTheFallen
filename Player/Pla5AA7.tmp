@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://c03ykfjge8iyu"]
+
+[ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_rxdf8"]
+[ext_resource type="Script" path="res://Player/Collision_Detection.gd" id="2_2w57t"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xee26"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vqqne"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ndedj"]
+size = Vector3(1.21289, 0.721565, 1.30212)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_rxdf8")
+
+[node name="Character_Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_xee26")
+disabled = true
+
+[node name="Character_Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_vqqne")
+
+[node name="Camera_Spring_Arm" type="SpringArm3D" parent="."]
+transform = Transform3D(-1, -7.83733e-08, 3.87345e-08, 0, 0.443071, 0.896486, -8.74228e-08, 0.896486, -0.443071, 0, 2.65368, 0)
+spring_length = 10.0
+margin = 0.2
+
+[node name="Camera3D" type="Camera3D" parent="Camera_Spring_Arm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08482e-06, 0, 13.8071)
+current = true
+
+[node name="Collision_Detection" type="Area3D" parent="."]
+disable_mode = 2
+script = ExtResource("2_2w57t")
+
+[node name="Collision_Node_North" type="CollisionShape3D" parent="Collision_Detection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0102646, 0.92561, 1.57978)
+shape = SubResource("BoxShape3D_ndedj")
+
+[node name="Collision_Node_South" type="CollisionShape3D" parent="Collision_Detection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+shape = SubResource("BoxShape3D_ndedj")
+
+[node name="Collision_Node_East" type="CollisionShape3D" parent="Collision_Detection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+shape = SubResource("BoxShape3D_ndedj")
+
+[node name="Collision_Node_West" type="CollisionShape3D" parent="Collision_Detection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+shape = SubResource("BoxShape3D_ndedj")
+
+[connection signal="area_shape_entered" from="Collision_Detection" to="Collision_Detection" method="_on_area_shape_entered"]
+[connection signal="body_shape_entered" from="Collision_Detection" to="Collision_Detection" method="_on_body_shape_entered"]

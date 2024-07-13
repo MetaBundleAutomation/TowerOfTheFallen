@@ -28,4 +28,4 @@ debug_show_collision = true
 transform = Transform3D(0.809412, -0.44071, 0.388107, -0.433077, -0.00162432, 0.901355, -0.396606, -0.897648, -0.192176, 274.078, 96.7842, 228.306)
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("4_eb0e5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 244.633, 0.0824161, 292.069)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 244.633, 7.39098e-06, 292.069)
